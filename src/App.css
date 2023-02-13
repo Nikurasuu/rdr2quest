@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-.App {
-  
-}
-
 .title {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -18,12 +14,14 @@
   display: flex;
   margin: 20px 20px;
   padding: 0px 20px;
+  background-color: #ffffff;
 }
 
 .QuestList{
   width: 50%;
   margin: 20px 20px;
   box-shadow: var(--shadow-elevation-medium);
+  background-color: #ffffff;
 }
 
 :root {

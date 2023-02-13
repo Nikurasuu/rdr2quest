@@ -8,24 +8,23 @@ import Box from '@mui/material/Box';
 function QuestList() {
   return (
     <div className="QuestList">
-      
-      <List>
-        <Box>
+      <Box>
+        <List>
 
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="Quest 1" />
-              </ListItemButton>
-            </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Quest 1" />
+            </ListItemButton>
+          </ListItem>
 
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary="Quest 2" />
-              </ListItemButton>
-            </ListItem>
-            
-          </Box>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Quest 2" />
+            </ListItemButton>
+          </ListItem>
+
         </List>
+      </Box>
     </div>
   );
 }
