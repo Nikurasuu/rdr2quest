@@ -1,12 +1,15 @@
 import './App.css';
 import NavBar from './components/NavBar';
-import QuestList from './components/QuestList.tsx';
+import QuestList from './components/QuestList.js';
+import FadeIn from './components/FadeIn';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <QuestList />
+      <FadeIn>
+        <QuestList />
+      </FadeIn>
     </div>
   );
 }

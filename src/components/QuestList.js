@@ -11,6 +11,7 @@ function QuestList() {
       
       <List>
         <Box>
+
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemText primary="Quest 1" />
@@ -22,6 +23,7 @@ function QuestList() {
                 <ListItemText primary="Quest 2" />
               </ListItemButton>
             </ListItem>
+            
           </Box>
         </List>
     </div>
