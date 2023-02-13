@@ -1,10 +1,12 @@
 import './App.css';
-import Button from '@mui/material/Button';
+import NavBar from './components/NavBar';
+import QuestList from './components/QuestList.tsx';
 
 function App() {
   return (
     <div className="App">
-      <Button variant="contained">Hello World</Button>
+      <NavBar />
+      <QuestList />
     </div>
   );
 }
