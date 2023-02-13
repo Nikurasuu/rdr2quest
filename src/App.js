@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <FadeIn>
+      <FadeIn duration={600}>
         <QuestList />
       </FadeIn>
     </div>

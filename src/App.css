@@ -4,8 +4,20 @@
   
 }
 
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 28px;
+  color: #000000;
+  margin: 10px 10px;
+}
+
 .NavBar {
   box-shadow: var(--shadow-elevation-low);
+  display: flex;
+  margin: 20px 20px;
+  padding: 0px 20px;
 }
 
 .QuestList{
