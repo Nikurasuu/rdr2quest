@@ -3,12 +3,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { List } from "@mui/material";
-import Box from '@mui/material/Box';
 
-function QuestList() {
+function App() {
   return (
     <div className="QuestList">
-      <Box>
+      
         <List>
 
           <ListItem disablePadding>
@@ -24,9 +23,9 @@ function QuestList() {
           </ListItem>
 
         </List>
-      </Box>
+      
     </div>
   );
 }
 
-export default QuestList;
+export default App;

@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 
-function NavBar() {
+function App() {
   return (
     <div className="NavBar">
       <p className='title'>Red Dead Redemption 2 Quest Tool</p>
@@ -11,4 +11,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default App;

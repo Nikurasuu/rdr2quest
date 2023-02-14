@@ -2,14 +2,27 @@ import './App.css';
 import NavBar from './components/NavBar';
 import QuestList from './components/QuestList.js';
 import FadeIn from './components/FadeIn';
+import Counter from './components/Counter';
+import { Grid } from '@mui/material';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <FadeIn duration={600}>
-        <QuestList />
-      </FadeIn>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <FadeIn duration={600}>
+            <QuestList />
+          </FadeIn>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <FadeIn duration={600}>
+            <div className="Counter">
+              <Counter />
+            </div>
+          </FadeIn>
+        </Grid>
+      </Grid>
     </div>
   );
 }
