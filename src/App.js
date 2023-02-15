@@ -13,8 +13,7 @@ const quest = [
       description: "Description 1",
       type: "Type 1",
       location: "Location 1",
-      reward: "Reward 1",
-      greet: () => console.log("Hello")
+      reward: "Reward 1"
   },
   {
       name: "Quest 2",
