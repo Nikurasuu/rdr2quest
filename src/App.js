@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import QuestList from './components/QuestList.js';
@@ -6,9 +7,36 @@ import Counter from './components/Counter';
 import QuestDetails from './components/QuestDetails';
 import { Grid } from '@mui/material';
 
+const quest = [
+  {
+      name: "Quest 1",
+      description: "Description 1",
+      type: "Type 1",
+      location: "Location 1",
+      reward: "Reward 1"
+  },
+  {
+      name: "Quest 2",
+      description: "Description 2",
+      type: "Type 2",
+      location: "Location 2",
+      reward: "Reward 2"
+  },
+  {
+      name: "Quest 3",
+      description: "Description 3",
+      type: "Type 3",
+      location: "Location 3",
+      reward: "Reward 3"
+  },
+];
+
 function App() {
+  const [quests] = React.useState(quest);
+  const [activeQuest, setActiveQuest] = React.useState(null);
+
   return (
-    <div className="App">
+    <div className="App" id='app'>
 
       <NavBar />
 
@@ -16,7 +44,7 @@ function App() {
 
         <Grid item xs={12} sm={6}>
           <FadeIn duration={1000}>
-            <QuestList />
+            <QuestList quests={quests} />
           </FadeIn>
         </Grid>
 

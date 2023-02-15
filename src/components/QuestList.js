@@ -3,29 +3,23 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { List } from "@mui/material";
+import Button from "@mui/material/Button";
 
-function App() {
+function QuestList({quests}) {
   return (
     <div className="QuestList">
-      
-        <List>
-
+      <List>
+        {quests.map((quest) => (
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Quest 1" />
+              <ListItemText primary={quest.name} />
             </ListItemButton>
           </ListItem>
+        ))}
 
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemText primary="Quest 2" />
-            </ListItemButton>
-          </ListItem>
-
-        </List>
-      
+      </List>
     </div>
   );
 }
 
-export default App;
+export default QuestList;
