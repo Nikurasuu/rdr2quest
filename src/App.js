@@ -13,7 +13,8 @@ const quest = [
       description: "Description 1",
       type: "Type 1",
       location: "Location 1",
-      reward: "Reward 1"
+      reward: "Reward 1",
+      greet: () => console.log("Hello")
   },
   {
       name: "Quest 2",
@@ -34,6 +35,7 @@ const quest = [
 function App() {
   const [quests] = React.useState(quest);
   const [activeQuest, setActiveQuest] = React.useState(null);
+  console.log(activeQuest);
 
   return (
     <div className="App" id='app'>
@@ -44,14 +46,14 @@ function App() {
 
         <Grid item xs={12} sm={3}>
           <FadeIn duration={1000}>
-            <QuestList quests={quests} />
+            <QuestList quests={quests} onSelectHandler={setActiveQuest}/>
           </FadeIn>
         </Grid>
 
         <Grid item xs={12} sm={7}>
           <FadeIn duration={1000}>
             <div className="QuestDetails">
-              <QuestDetails />
+              <QuestDetails quest={activeQuest} />
             </div>
           </FadeIn>
         </Grid>
