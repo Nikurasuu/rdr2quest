@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function QuestDetails() {
     const [activeQuest, setActiveQuest] = React.useState(null);
     

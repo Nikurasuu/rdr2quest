@@ -42,13 +42,13 @@ function App() {
 
       <Grid container spacing={2}>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={3}>
           <FadeIn duration={1000}>
             <QuestList quests={quests} />
           </FadeIn>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={7}>
           <FadeIn duration={1000}>
             <div className="QuestDetails">
               <QuestDetails />
