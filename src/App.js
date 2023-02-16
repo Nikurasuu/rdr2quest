@@ -40,7 +40,11 @@ function App() {
       reward: "Reward " + (questLength + 1).toString()
     };
     setQuests([...quests, newQuest]);
-    console.log(quests);
+  };
+
+  const deleteQuest = () => {
+    quests.pop();
+    setQuests([...quests]);
   };
 
   return (
@@ -55,6 +59,7 @@ function App() {
           <div className="QuestList">
               <QuestList quests={quests} onSelectHandler={setActiveQuest}/>
               <Button onClick={addQuest}> Add Quest </Button>
+              <Button onClick={deleteQuest}> Delete Quest </Button>
             </div>
           </FadeIn>
         </Grid>
