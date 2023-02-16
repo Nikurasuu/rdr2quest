@@ -6,8 +6,9 @@ import FadeIn from './components/FadeIn';
 import Counter from './components/Counter';
 import QuestDetails from './components/QuestDetails';
 import { Grid } from '@mui/material';
+import { Button } from '@mui/material';
 
-const quest = [
+let quest = [
   {
       name: "Quest 1",
       description: "Description 1",
@@ -29,6 +30,14 @@ const quest = [
       location: "Location 3",
       reward: "Reward 3"
   },
+  {
+      name: "Quest 4",
+      description: "Description 4",
+      type: "Type 4",
+      location: "Location 4",
+      reward: "Reward 4"
+  },
+  
 ];
 
 function App() {
@@ -66,8 +75,20 @@ function App() {
         </Grid>
 
       </Grid>
+      <Button onClick={() => addQuest()}> Add Quest </Button>
     </div>
   );
+}
+
+function addQuest(){
+  quest.push({
+    name: "Quest 5",
+    description: "Description 5",
+    type: "Type 5",
+    location: "Location 5",
+    reward: "Reward 5"
+  });
+  console.log(quest);
 }
 
 export default App;
