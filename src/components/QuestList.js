@@ -6,7 +6,7 @@ import { Button, List } from "@mui/material";
 
 function QuestList({quests, onSelectHandler}) {
   return (
-    <div className="QuestList">
+    
       <List>
         {quests.map((quest) => (
           <ListItem disablePadding>
@@ -16,7 +16,7 @@ function QuestList({quests, onSelectHandler}) {
           </ListItem>
         ))}
       </List>
-    </div>
+
   );
 }
 

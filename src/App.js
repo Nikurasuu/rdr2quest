@@ -22,28 +22,26 @@ let quest = [
       type: "Type 2",
       location: "Location 2",
       reward: "Reward 2"
-  },
-  {
-      name: "Quest 3",
-      description: "Description 3",
-      type: "Type 3",
-      location: "Location 3",
-      reward: "Reward 3"
-  },
-  {
-      name: "Quest 4",
-      description: "Description 4",
-      type: "Type 4",
-      location: "Location 4",
-      reward: "Reward 4"
-  },
-  
+  }
 ];
 
+
 function App() {
-  const [quests] = React.useState(quest);
+  const [quests, setQuests] = React.useState(quest);
   const [activeQuest, setActiveQuest] = React.useState(null);
-  console.log(activeQuest);
+
+  const addQuest = () => {
+    let questLength = quests.length;
+    const newQuest = {
+      name: "Quest " + (questLength + 1).toString(),
+      description: "Description " + (questLength + 1).toString(),
+      type: "Type " + (questLength + 1).toString(),
+      location: "Location " + (questLength + 1).toString(),
+      reward: "Reward " + (questLength + 1).toString()
+    };
+    setQuests([...quests, newQuest]);
+    console.log(quests);
+  };
 
   return (
     <div className="App" id='app'>
@@ -54,7 +52,10 @@ function App() {
 
         <Grid item xs={12} sm={3}>
           <FadeIn duration={1000}>
-            <QuestList quests={quests} onSelectHandler={setActiveQuest}/>
+          <div className="QuestList">
+              <QuestList quests={quests} onSelectHandler={setActiveQuest}/>
+              <Button onClick={addQuest}> Add Quest </Button>
+            </div>
           </FadeIn>
         </Grid>
 
@@ -75,20 +76,8 @@ function App() {
         </Grid>
 
       </Grid>
-      <Button onClick={() => addQuest()}> Add Quest </Button>
     </div>
   );
-}
-
-function addQuest(){
-  quest.push({
-    name: "Quest 5",
-    description: "Description 5",
-    type: "Type 5",
-    location: "Location 5",
-    reward: "Reward 5"
-  });
-  console.log(quest);
 }
 
 export default App;
