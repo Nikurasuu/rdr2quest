@@ -1,13 +1,10 @@
 import React from 'react';
 import './App.css';
+import { Grid, Card } from '@mui/material';
 import NavBar from './components/NavBar';
-import QuestList from './components/QuestList.js';
 import Counter from './components/Counter';
-import QuestDetails from './components/QuestDetails';
-import { CardActions, CardContent, Grid } from '@mui/material';
-import { Button } from '@mui/material';
 import { LoremIpsum } from "lorem-ipsum";
-import { Card } from '@mui/material';
+import QuestContainer from './components/QuestContainer';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -30,7 +27,6 @@ let quest = [
       reward: lorem.generateWords(1)
   }
 ];
-
 
 function App() {
   const [quests, setQuests] = React.useState(quest);
@@ -58,31 +54,16 @@ function App() {
   return (
     <div className="App" id='app'>
       <Grid container spacing={2}>
-      <Grid item xs={12} sm={12}>
-        <NavBar />
-      </Grid>
-        <Grid item xs={12} sm={4}>
-            <Card className="QuestList">
-              <div className="QuestList">
-                <CardContent>
-                  <QuestList quests={quests} onSelectHandler={setActiveQuest} />
-                </CardContent>
-                  <CardActions>
-                  <Button onClick={addQuest}> Add Quest </Button>
-                  <Button onClick={deleteQuest}> Delete Quest </Button>
-                </CardActions>
-              </div>
-            </Card>
+        <Grid item xs={12} sm={12}>
+          <NavBar />
         </Grid>
-        <Grid item xs={12} sm={8}>
-              <Card>
-                <QuestDetails quest={activeQuest} />
-              </Card>
+        <Grid item xs={12} sm={12}>
+          <QuestContainer/>
         </Grid>
         <Grid item xs={12} sm={1}>
-              <Card className='Counter'>
-                <Counter />
-              </Card>
+          <Card className='Counter'>
+            <Counter />
+          </Card>
         </Grid>
       </Grid>
     </div>
