@@ -2,12 +2,12 @@ import React from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import QuestList from './components/QuestList.js';
-import FadeIn from './components/FadeIn';
 import Counter from './components/Counter';
 import QuestDetails from './components/QuestDetails';
-import { Grid } from '@mui/material';
+import { CardActions, CardContent, Grid } from '@mui/material';
 import { Button } from '@mui/material';
 import { LoremIpsum } from "lorem-ipsum";
+import { Card } from '@mui/material';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -57,37 +57,33 @@ function App() {
 
   return (
     <div className="App" id='app'>
-
-      <NavBar />
-
       <Grid container spacing={2}>
-
+      <Grid item xs={12} sm={12}>
+        <NavBar />
+      </Grid>
         <Grid item xs={12} sm={4}>
-          <FadeIn duration={1000}>
-            <div className="QuestList">
-              <QuestList quests={quests} onSelectHandler={setActiveQuest} />
-              <Button onClick={addQuest}> Add Quest </Button>
-              <Button onClick={deleteQuest}> Delete Quest </Button>
-            </div>
-          </FadeIn>
+            <Card className="QuestList">
+              <div className="QuestList">
+                <CardContent>
+                  <QuestList quests={quests} onSelectHandler={setActiveQuest} />
+                </CardContent>
+                  <CardActions>
+                  <Button onClick={addQuest}> Add Quest </Button>
+                  <Button onClick={deleteQuest}> Delete Quest </Button>
+                </CardActions>
+              </div>
+            </Card>
         </Grid>
-
         <Grid item xs={12} sm={8}>
-          <FadeIn duration={1000}>
-            <div className="QuestDetails">
-              <QuestDetails quest={activeQuest} />
-            </div>
-          </FadeIn>
+              <Card>
+                <QuestDetails quest={activeQuest} />
+              </Card>
         </Grid>
-
-        <Grid item xs={12} sm={2}>
-          <FadeIn duration={1000}>
-            <div className="Counter">
-              <Counter />
-            </div>
-          </FadeIn>
+        <Grid item xs={12} sm={1}>
+              <Card className='Counter'>
+                <Counter />
+              </Card>
         </Grid>
-
       </Grid>
     </div>
   );
