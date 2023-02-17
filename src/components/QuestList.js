@@ -1,22 +1,22 @@
 import React from "react";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import { Button, List } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+
+const columns = [
+  { field: 'name', headerName: 'Quest Name', width: 400 },
+  { field: 'type', headerName: 'Typ'},
+  { field: 'location', headerName: 'Ort'}
+];
 
 function QuestList({quests, onSelectHandler}) {
   return (
-    
-      <List>
-        {quests.map((quest) => (
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => onSelectHandler(quest)}>
-              <ListItemText primary={quest.name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-
+      <div style={{ height: 891, width: '100%' }}>
+        <DataGrid
+          rows={quests}
+          columns={columns}
+          pageSize={15}
+          onRowClick={(cell) => onSelectHandler(cell.row)}
+        />
+      </div>
   );
 }
 

@@ -7,21 +7,27 @@ import Counter from './components/Counter';
 import QuestDetails from './components/QuestDetails';
 import { Grid } from '@mui/material';
 import { Button } from '@mui/material';
+import { LoremIpsum } from "lorem-ipsum";
+
+const lorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 8,
+    min: 4
+  },
+  wordsPerSentence: {
+    max: 16,
+    min: 4
+  }
+});
 
 let quest = [
   {
-      name: "Quest 1",
-      description: "Description 1",
-      type: "Type 1",
-      location: "Location 1",
-      reward: "Reward 1"
-  },
-  {
-      name: "Quest 2",
-      description: "Description 2",
-      type: "Type 2",
-      location: "Location 2",
-      reward: "Reward 2"
+      id: 1,
+      name: lorem.generateWords(4),
+      description: lorem.generateParagraphs(1),
+      type: lorem.generateWords(1),
+      location: lorem.generateWords(2),
+      reward: lorem.generateWords(1)
   }
 ];
 
@@ -31,20 +37,22 @@ function App() {
   const [activeQuest, setActiveQuest] = React.useState(null);
 
   const addQuest = () => {
-    let questLength = quests.length;
+    let lastId = quests[quests.length - 1].id;
     const newQuest = {
-      name: "Quest " + (questLength + 1).toString(),
-      description: "Description " + (questLength + 1).toString(),
-      type: "Type " + (questLength + 1).toString(),
-      location: "Location " + (questLength + 1).toString(),
-      reward: "Reward " + (questLength + 1).toString()
+      id: lastId + 1,
+      name: lorem.generateWords(4),
+      description: lorem.generateParagraphs(1),
+      type: lorem.generateWords(1),
+      location: lorem.generateWords(2),
+      reward: lorem.generateWords(1)
     };
     setQuests([...quests, newQuest]);
   };
 
   const deleteQuest = () => {
-    quests.pop();
-    setQuests([...quests]);
+    console.log(activeQuest)
+    let newQuests = quests.filter((quest) => quest.id !== activeQuest.id);
+    setQuests(newQuests);
   };
 
   return (
@@ -54,17 +62,17 @@ function App() {
 
       <Grid container spacing={2}>
 
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={4}>
           <FadeIn duration={1000}>
-          <div className="QuestList">
-              <QuestList quests={quests} onSelectHandler={setActiveQuest}/>
+            <div className="QuestList">
+              <QuestList quests={quests} onSelectHandler={setActiveQuest} />
               <Button onClick={addQuest}> Add Quest </Button>
               <Button onClick={deleteQuest}> Delete Quest </Button>
             </div>
           </FadeIn>
         </Grid>
 
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} sm={8}>
           <FadeIn duration={1000}>
             <div className="QuestDetails">
               <QuestDetails quest={activeQuest} />

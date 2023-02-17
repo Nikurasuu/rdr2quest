@@ -6,12 +6,15 @@ export function QuestDetails({ quest }) {
     }
     return (
         <div className = "QuestDetails" >
-            <h2>Quest Details</h2>
-            <p>Quest Name: {quest.name}</p>
-            <p>Quest Description: {quest.description}</p>
-            <p>Quest Type: {quest.type}</p>
-            <p>Quest Location: {quest.location}</p>
-            <p>Quest Reward: {quest.reward}</p>
+            <h2>{quest.name}</h2>
+            <h4>Quest Type</h4>
+            <p>{quest.type}</p>
+            <h4>Quest Description</h4>
+            <p>{quest.description}</p>
+            <h4>Quest Location</h4>
+            <p>{quest.location}</p>
+            <h4>Quest Reward</h4>
+            <p>{quest.reward}</p>
         </div>
     );
 }
