@@ -10,22 +10,23 @@ import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
 
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App() {
+  const theme = useTheme();
+  const colorMode = React.useContext(ColorModeContext);
   return (
     <div className="App" id='app'>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12}>
             <Card className='NavBar'>
               <NavBar />
+              <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+                {theme.palette.mode === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
             </Card>
           </Grid>
           <Grid item xs={12} sm={12}>
@@ -42,4 +43,32 @@ function App() {
   );
 }
 
-export default App;
+export default function ToggleColorMode() {
+  const [mode, setMode] = React.useState('dark');
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
+
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
+
+  return (
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+}
