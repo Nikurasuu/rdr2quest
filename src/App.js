@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
 import { Grid, Card, CssBaseline } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material';
+import { useTheme, ThemeProvider, createTheme } from '@mui/material';
 import NavBar from './components/NavBar';
 import Counter from './components/Counter';
 import QuestContainer from './components/QuestContainer';
+
+import IconButton from '@mui/material/IconButton';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const darkTheme = createTheme({
   palette: {
@@ -20,7 +24,9 @@ function App() {
         <CssBaseline />
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12}>
-            <NavBar />
+            <Card className='NavBar'>
+              <NavBar />
+            </Card>
           </Grid>
           <Grid item xs={12} sm={12}>
             <QuestContainer/>
