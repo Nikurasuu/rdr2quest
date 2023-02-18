@@ -6,7 +6,6 @@ import NavBar from './components/NavBar';
 import Counter from './components/Counter';
 import QuestContainer from './components/QuestContainer';
 
-
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
