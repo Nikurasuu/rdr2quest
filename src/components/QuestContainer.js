@@ -31,7 +31,6 @@ let quest = [
 ];
 
 function QuestContainer() {
-    //TODO: Add Alert for deleting not selected quest
     const [quests, setQuests] = React.useState(quest);
     const [activeQuest, setActiveQuest] = React.useState(null);
     const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
@@ -59,7 +58,13 @@ function QuestContainer() {
     };
 
     const addQuest = () => {
-        let lastId = quests[quests.length - 1].id;
+        let lastId;
+        if (quests.length === 0) {
+            lastId = 0;
+        } else {
+            lastId = quests[quests.length - 1].id;
+        }
+        console.log(lastId);
         const newQuest = {
             id: lastId + 1,
             name: lorem.generateWords(4),
