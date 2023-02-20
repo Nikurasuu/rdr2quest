@@ -8,6 +8,9 @@ import { LoremIpsum } from "lorem-ipsum";
 import QuestList from "./QuestList";
 import QuestDetails from "./QuestDetails";
 
+const containerWidth = document.getElementById("root").offsetWidth;
+const containerHeight = window.innerHeight;
+
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
     max: 8,
@@ -108,15 +111,15 @@ function QuestContainer() {
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={4}>
                     <Card className="QuestList">
-                    <div className="QuestList">
-                        <CardContent>
-                            <QuestList quests={quests} onSelectHandler={setActiveQuest} />
-                        </CardContent>
-                        <CardActions>
-                            <Button onClick={addQuest}> Add Quest </Button>
-                            <Button onClick={handleClickDelete}> Delete Quest </Button>
-                        </CardActions>
-                    </div>
+                        <div className="QuestList">
+                            <CardContent>
+                                <QuestList quests={quests} onSelectHandler={setActiveQuest} />
+                            </CardContent>
+                            <CardActions>
+                                <Button onClick={addQuest}> Add Quest </Button>
+                                <Button onClick={handleClickDelete}> Delete Quest </Button>
+                            </CardActions>
+                        </div>
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={8}>

@@ -2,7 +2,6 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 
 const containerWidth = document.getElementById("root").offsetWidth/3;
-//get the height of the window
 const containerHeight = window.innerHeight-250;
 
 const columns = [
