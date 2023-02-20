@@ -8,9 +8,6 @@ import { LoremIpsum } from "lorem-ipsum";
 import QuestList from "./QuestList";
 import QuestDetails from "./QuestDetails";
 
-const containerWidth = document.getElementById("root").offsetWidth;
-const containerHeight = window.innerHeight;
-
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
     max: 8,
