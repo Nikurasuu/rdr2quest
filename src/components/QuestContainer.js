@@ -158,6 +158,7 @@ function QuestContainer() {
                         type="text"
                         fullWidth
                         variant="standard"
+                        multiline
                         inputRef={questDescriptionRef}
                     />
                     <TextField
