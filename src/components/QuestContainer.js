@@ -34,27 +34,34 @@ function QuestContainer() {
     const [quests, setQuests] = React.useState(quest);
     const [activeQuest, setActiveQuest] = React.useState(null);
     const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
-    const [openDeleteAlert, setOpenDeleteAlert] = React.useState(false);
+    const [openDeleteAlert, setOpenNotSelectedAlert] = React.useState(false);
 
     const handleClickDelete = () => {
         if (!activeQuest) {
-            console.log("No quest selected");
-            handleDeleteAltert();
+            handleNotSelectedAlert();
             return;
         }
         setOpenDeleteDialog(true);
+    };
+
+    const handleClickEdit = () => {
+        if (!activeQuest) {
+            handleNotSelectedAlert();
+            return;
+        }
+        console.log("Edit");
     };
 
     const handleCloseDeleteDialog = () => {
         setOpenDeleteDialog(false);
     };
 
-    const handleDeleteAltert = () => {
-        setOpenDeleteAlert(true);
+    const handleNotSelectedAlert = () => {
+        setOpenNotSelectedAlert(true);
     };
 
-    const handleCloseDeleteAlert = () => {
-        setOpenDeleteAlert(false);
+    const handleCloseNotSelectedAlert = () => {
+        setOpenNotSelectedAlert(false);
     };
 
     const addQuest = () => {
@@ -90,8 +97,8 @@ function QuestContainer() {
             <Snackbar 
                 open={openDeleteAlert} 
                 autoHideDuration={6000} 
-                onClose={handleCloseDeleteAlert}
-                message="Please select a quest to delete"
+                onClose={handleCloseNotSelectedAlert}
+                message="Please select a quest"
             />
             <Dialog open={openDeleteDialog} onClose={handleCloseDeleteDialog}>
                 <DialogTitle> Delete Quest? </DialogTitle>
@@ -115,6 +122,7 @@ function QuestContainer() {
                         <CardActions>
                             <Button onClick={addQuest}> Add Quest </Button>
                             <Button onClick={handleClickDelete}> Delete Quest </Button>
+                            <Button onClick={handleClickEdit}> Edit Quest </Button>
                         </CardActions>
                     </div>
                     </Card>
