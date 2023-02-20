@@ -3,7 +3,6 @@ import './App.css';
 import { Grid, Card, CssBaseline } from '@mui/material';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material';
 import NavBar from './components/NavBar';
-import Counter from './components/Counter';
 import QuestContainer from './components/QuestContainer';
 
 import IconButton from '@mui/material/IconButton';
@@ -31,11 +30,6 @@ function App() {
           </Grid>
           <Grid item xs={12} sm={12}>
             <QuestContainer/>
-          </Grid>
-          <Grid item xs={12} sm={1}>
-            <Card className='Counter'>
-              <Counter />
-            </Card>
           </Grid>
         </Grid>
       </ThemeProvider>
