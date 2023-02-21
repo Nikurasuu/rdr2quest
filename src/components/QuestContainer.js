@@ -4,29 +4,18 @@ import {
     Dialog, DialogActions, DialogContent, DialogContentText, 
     DialogTitle, Snackbar 
 } from "@mui/material";
-import { LoremIpsum } from "lorem-ipsum";
 import QuestList from "./QuestList";
 import QuestDetails from "./QuestDetails";
-
-const lorem = new LoremIpsum({
-  sentencesPerParagraph: {
-    max: 8,
-    min: 4
-  },
-  wordsPerSentence: {
-    max: 16,
-    min: 4
-  }
-});
+import TextField from "@mui/material/TextField";
 
 let quest = [
   {
       id: 1,
-      name: lorem.generateWords(4),
-      description: lorem.generateParagraphs(1),
-      type: lorem.generateWords(1),
-      location: lorem.generateWords(2),
-      reward: lorem.generateWords(1)
+      name: "The First Quest",
+      description: "This is the first quest, please edit this quest or delete it and add a new one.", 
+      type: "Main Quest",
+      location: "Saint Denis",
+      reward: "Money"
   }
 ];
 
@@ -34,27 +23,52 @@ function QuestContainer() {
     const [quests, setQuests] = React.useState(quest);
     const [activeQuest, setActiveQuest] = React.useState(null);
     const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
-    const [openDeleteAlert, setOpenDeleteAlert] = React.useState(false);
+    const [openNotSelectedAlert, setOpenNotSelectedAlert] = React.useState(false);
+    const [openEditDialog, setOpenEditDialog] = React.useState(false);
+    const [openEmptyFieldsAlert, setOpenEmptyFieldsAlert] = React.useState(false);
+
+    const questNameEditRef = React.useRef();
+    const questDescriptionEditRef = React.useRef();
+    const questTypeEditRef = React.useRef();
+    const questLocationEditRef = React.useRef();
+    const questRewardEditRef = React.useRef();
+
+    const handleDeleteDialog = () => {
+        setOpenDeleteDialog(!openDeleteDialog);
+    };
+
+    const handleEditDialog = () => {
+        setOpenEditDialog(!openEditDialog);
+    };
+
+    const handleNotSelectedAlert = () => {
+        setOpenNotSelectedAlert(!openNotSelectedAlert);
+    };
+
+    const handleEmptyFieldsAlert = () => {
+        setOpenEmptyFieldsAlert(!openEmptyFieldsAlert);
+    };
+
+    //check if a quest is selected and return true or false
+    const checkIfQuestIsSelected = () => {
+        if (activeQuest === null) {
+            handleNotSelectedAlert();
+            return false;
+        }
+        return true;
+    };
 
     const handleClickDelete = () => {
-        if (!activeQuest) {
-            console.log("No quest selected");
-            handleDeleteAltert();
-            return;
+        if (checkIfQuestIsSelected()) {
+            handleDeleteDialog();
         }
-        setOpenDeleteDialog(true);
     };
+    
 
-    const handleCloseDeleteDialog = () => {
-        setOpenDeleteDialog(false);
-    };
-
-    const handleDeleteAltert = () => {
-        setOpenDeleteAlert(true);
-    };
-
-    const handleCloseDeleteAlert = () => {
-        setOpenDeleteAlert(false);
+    const handleClickEdit = () => {
+        if (checkIfQuestIsSelected()) {
+            handleEditDialog();
+        }
     };
 
     const addQuest = () => {
@@ -64,16 +78,57 @@ function QuestContainer() {
         } else {
             lastId = quests[quests.length - 1].id;
         }
-        console.log(lastId);
         const newQuest = {
             id: lastId + 1,
-            name: lorem.generateWords(4),
-            description: lorem.generateParagraphs(1),
-            type: lorem.generateWords(1),
-            location: lorem.generateWords(2),
-            reward: lorem.generateWords(1)
+            name: "",
+            description: "",
+            type: "",
+            location: "",
+            reward: ""
         };
+        setActiveQuest(newQuest);
         setQuests([...quests, newQuest]);
+        handleEditDialog();
+    };
+
+    const deleteEmptyQuest = () => {
+        if (activeQuest.name === "") {
+            const newQuests = quests.filter((quest) => quest.id !== activeQuest.id);
+            setQuests(newQuests);
+            setActiveQuest(null);
+        }
+        handleEditDialog();
+    };
+
+
+    const editQuest = () => {
+        if (
+            questNameEditRef.current.value === "" ||
+            questDescriptionEditRef.current.value === "" ||
+            questTypeEditRef.current.value === "" ||
+            questLocationEditRef.current.value === "" ||
+            questRewardEditRef.current.value === ""
+        ) {
+            handleEmptyFieldsAlert();
+            return;
+        }
+
+        const newQuests = quests.map((quest) => {
+            if (quest.id === activeQuest.id) {
+                return {
+                    ...quest,
+                    name: questNameEditRef.current.value,
+                    description: questDescriptionEditRef.current.value,
+                    type: questTypeEditRef.current.value,
+                    location: questLocationEditRef.current.value,
+                    reward: questRewardEditRef.current.value
+                };
+            }
+            return quest;
+        });
+        setQuests(newQuests);
+        setActiveQuest(null);
+        setOpenEditDialog(false);
     };
 
     const deleteQuest = () => {
@@ -85,15 +140,22 @@ function QuestContainer() {
         setActiveQuest(null);
         setOpenDeleteDialog(false);
     };
+
     return ( 
         <>  
             <Snackbar 
-                open={openDeleteAlert} 
+                open={openNotSelectedAlert} 
                 autoHideDuration={6000} 
-                onClose={handleCloseDeleteAlert}
-                message="Please select a quest to delete"
+                onClose={handleNotSelectedAlert}
+                message="Please select a quest"
             />
-            <Dialog open={openDeleteDialog} onClose={handleCloseDeleteDialog}>
+            <Snackbar 
+                open={openEmptyFieldsAlert} 
+                autoHideDuration={6000} 
+                onClose={handleEmptyFieldsAlert}
+                message="You need to fill out all fields"
+            />
+            <Dialog open={openDeleteDialog} onClose={handleDeleteDialog}>
                 <DialogTitle> Delete Quest? </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -101,22 +163,86 @@ function QuestContainer() {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseDeleteDialog}> Cancel </Button>
+                    <Button onClick={handleDeleteDialog}> Cancel </Button>
                     <Button onClick={deleteQuest}> Delete </Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog open={openEditDialog} onClose={deleteEmptyQuest} fullScreen>
+                <DialogTitle>Edit Quest</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="questName"
+                        label="Quest Name"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        inputRef={questNameEditRef}
+                        defaultValue={activeQuest === null ? '' : activeQuest.name}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="questDescription"
+                        label="Quest Description"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        multiline
+                        inputRef={questDescriptionEditRef}
+                        defaultValue={activeQuest === null ? '' : activeQuest.description}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="questType"
+                        label="Quest Type"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        inputRef={questTypeEditRef}
+                        defaultValue={activeQuest === null ? '' : activeQuest.type}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="questLocation"
+                        label="Quest Location"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        inputRef={questLocationEditRef}
+                        defaultValue={activeQuest === null ? '' : activeQuest.location}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="questReward"
+                        label="Quest Reward"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        inputRef={questRewardEditRef}
+                        defaultValue={activeQuest === null ? '' : activeQuest.reward}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={deleteEmptyQuest}>Cancel</Button>
+                    <Button onClick={editQuest}>Submit</Button>
                 </DialogActions>
             </Dialog>
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={4}>
                     <Card className="QuestList">
-                        <div className="QuestList">
-                            <CardContent>
-                                <QuestList quests={quests} onSelectHandler={setActiveQuest} />
-                            </CardContent>
-                            <CardActions>
-                                <Button onClick={addQuest}> Add Quest </Button>
-                                <Button onClick={handleClickDelete}> Delete Quest </Button>
-                            </CardActions>
-                        </div>
+                        <CardContent>
+                            <QuestList quests={quests} onSelectHandler={setActiveQuest} />
+                        </CardContent>
+                        <CardActions>
+                            <Button onClick={addQuest}> Add Quest </Button>
+                            <Button onClick={handleClickDelete}> Delete Quest </Button>
+                            <Button onClick={handleClickEdit}> Edit Quest </Button>
+                        </CardActions>
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={8}>
@@ -126,7 +252,7 @@ function QuestContainer() {
                 </Grid>
             </Grid>
         </>
-     );
+    );
 }
 
 export default QuestContainer;
