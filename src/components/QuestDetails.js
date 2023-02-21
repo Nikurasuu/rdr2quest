@@ -6,7 +6,7 @@ export function QuestDetails({ quest }) {
         return null;
     }
     return (
-        <div style={{ height: '80vh', width: '100%' }}>
+        <div style={{ height: '100%', width: '100%' }}>
             <div className = "QuestDetails" >
                 <h2>{quest.name}</h2>
                 <h4>Quest Type</h4>
