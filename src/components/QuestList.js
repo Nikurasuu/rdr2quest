@@ -2,8 +2,6 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 
 const containerWidth = document.getElementById("root").offsetWidth/3;
-//get the height of the window
-const containerHeight = window.innerHeight-250;
 
 const columns = [
   { field: 'name', headerName: 'Quest Name', width: containerWidth/1.75 },
@@ -13,14 +11,13 @@ const columns = [
 
 function QuestList({quests, onSelectHandler}) {
   return (
-      <div style={{ height: containerHeight, width: '100%' }}>
         <DataGrid
           rows={quests}
           columns={columns}
           pageSize={15}
           onRowClick={(cell) => onSelectHandler(cell.row)}
+          autoHeight {...quests}
         />
-      </div>
   );
 }
 

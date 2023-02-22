@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
     <div className="App" id='app'>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{height: '100%'}}>
           <Grid item xs={12} sm={12}>
             <Card className='NavBar'>
               <NavBar />
@@ -28,7 +27,7 @@ function App() {
               </IconButton>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={12} sm={12} style={{height: '90%'}}>
             <QuestContainer/>
           </Grid>
         </Grid>

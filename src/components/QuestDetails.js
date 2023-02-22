@@ -1,11 +1,12 @@
 import React from 'react';
 
+
 export function QuestDetails({ quest }) {
     if(quest === null) {
         return null;
     }
     return (
-        <div className = "QuestDetails" >
+        <div className = "QuestDetails" style={{ height: '100%', width: '100%' }}>
             <h2>{quest.name}</h2>
             <h4>Quest Type</h4>
             <p>{quest.type}</p>

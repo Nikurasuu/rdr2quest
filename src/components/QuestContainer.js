@@ -49,7 +49,6 @@ function QuestContainer() {
         setOpenEmptyFieldsAlert(!openEmptyFieldsAlert);
     };
 
-    //check if a quest is selected and return true or false
     const checkIfQuestIsSelected = () => {
         if (activeQuest === null) {
             handleNotSelectedAlert();
@@ -142,7 +141,7 @@ function QuestContainer() {
     };
 
     return ( 
-        <>  
+        <>
             <Snackbar 
                 open={openNotSelectedAlert} 
                 autoHideDuration={6000} 
@@ -232,7 +231,7 @@ function QuestContainer() {
                     <Button onClick={editQuest}>Submit</Button>
                 </DialogActions>
             </Dialog>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} style={{height: '100%'}}>
                 <Grid item xs={12} sm={4}>
                     <Card className="QuestList">
                         <CardContent>
@@ -245,8 +244,8 @@ function QuestContainer() {
                         </CardActions>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={8}>
-                    <Card>
+                <Grid item xs={12} sm={8} style={{height: '100%'}}>
+                    <Card style={{height: '100%'}}>
                         <QuestDetails quest={activeQuest} />
                     </Card>
                 </Grid>
