@@ -166,7 +166,7 @@ function QuestContainer() {
                     <Button onClick={deleteQuest}> Delete </Button>
                 </DialogActions>
             </Dialog>
-            <Dialog open={openEditDialog} onClose={deleteEmptyQuest} fullScreen>
+            <Dialog open={openEditDialog} onClose={deleteEmptyQuest}>
                 <DialogTitle>Edit Quest</DialogTitle>
                 <DialogContent>
                     <TextField
