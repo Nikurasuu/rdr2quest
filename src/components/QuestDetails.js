@@ -1,11 +1,19 @@
 import React from 'react';
+import { z } from 'zod';
 
+const questSchema = z.object({
+    name: z.string().trim().min(1),
+    description: z.string().trim().min(1),
+    type: z.string().trim().min(1),
+    location: z.string().trim().min(1),
+    reward: z.string().trim().min(1)
+});
 
 export function QuestDetails({ quest }) {
-    if(quest === null) {
-        return null;
+    try {
+        questSchema.parse(quest);
     }
-    if(quest.name === '' || quest.type === '' || quest.description === '' || quest.location === '' || quest.reward === '') {
+    catch(error) {
         return null;
     }
     return (
