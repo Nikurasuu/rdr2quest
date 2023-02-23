@@ -122,7 +122,7 @@ function QuestContainer() {
                 <Grid item xs={12} sm={4}>
                     <Card className="QuestList">
                         <CardContent>
-                            <QuestList quests={quests} onSelectHandler={setActiveQuest} />
+                            <QuestList quests={quests} onSelectHandler={setActiveQuest} activeQuest={activeQuest} />
                         </CardContent>
                         <CardActions>
                             <Button onClick={addQuest}> Add Quest </Button>

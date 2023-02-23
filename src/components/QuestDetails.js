@@ -14,7 +14,11 @@ export function QuestDetails({ quest }) {
         questSchema.parse(quest);
     }
     catch(error) {
-        return null;
+        return (
+            <div className = "QuestDetails" style={{ height: '100%', width: '100%' }}>
+                <p>Keine Quest ausgewählt.</p>
+            </div>
+            );
     }
     return (
         <div className = "QuestDetails" style={{ height: '100%', width: '100%' }}>
