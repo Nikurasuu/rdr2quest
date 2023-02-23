@@ -5,6 +5,9 @@ export function QuestDetails({ quest }) {
     if(quest === null) {
         return null;
     }
+    if(quest.name === '' || quest.type === '' || quest.description === '' || quest.location === '' || quest.reward === '') {
+        return null;
+    }
     return (
         <div className = "QuestDetails" style={{ height: '100%', width: '100%' }}>
             <h2>{quest.name}</h2>
