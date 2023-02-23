@@ -9,7 +9,9 @@ const columns = [
   { field: 'location', headerName: 'Ort'}
 ];
 
-function QuestList({quests, onSelectHandler}) {
+function QuestList({quests, onSelectHandler, activeQuest}) {
+  const selectionModel = activeQuest ? [activeQuest.id] : [];
+
   return (
         <DataGrid
           rows={quests}
@@ -17,6 +19,7 @@ function QuestList({quests, onSelectHandler}) {
           pageSize={15}
           onRowClick={(cell) => onSelectHandler(cell.row)}
           autoHeight {...quests}
+          selectionModel={selectionModel}
         />
   );
 }
