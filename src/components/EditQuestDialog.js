@@ -52,7 +52,7 @@ function EditQuestDialog({  openEditDialog, setOpenEditDialog,
     };
     
     return ( 
-        <>
+        <div data-testid="editQuestDialog-1">
             <Snackbar 
                     open={openEmptyFieldsAlert} 
                     autoHideDuration={6000} 
@@ -124,7 +124,7 @@ function EditQuestDialog({  openEditDialog, setOpenEditDialog,
                         <Button onClick={handleSave}>Save</Button>
                     </DialogActions>
                 </Dialog>
-            </>
+            </div>
      );
 }
 
