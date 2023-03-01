@@ -52,7 +52,7 @@ function EditQuestDialog({  openEditDialog, setOpenEditDialog,
     };
     
     return ( 
-        <div data-testid="editQuestDialog-1">
+        <>
             <Snackbar 
                     open={openEmptyFieldsAlert} 
                     autoHideDuration={6000} 
@@ -60,6 +60,7 @@ function EditQuestDialog({  openEditDialog, setOpenEditDialog,
                     message="You need to fill out all fields"
                 />
             <Dialog open={openEditDialog} onClose={handleClose}>
+                <div data-testid="editQuestDialog-1">
                     <DialogTitle>Edit Quest</DialogTitle>
                     <DialogContent>
                         <TextField
@@ -123,8 +124,9 @@ function EditQuestDialog({  openEditDialog, setOpenEditDialog,
                         <Button onClick={handleClose}>Cancel</Button>
                         <Button onClick={handleSave}>Save</Button>
                     </DialogActions>
-                </Dialog>
-            </div>
+                </div>
+            </Dialog>
+        </>
      );
 }
 

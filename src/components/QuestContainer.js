@@ -115,7 +115,9 @@ function QuestContainer() {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleDeleteDialog}> Cancel </Button>
-                        <Button onClick={deleteQuest}> Delete </Button>
+                        <div data-testid='deleteQuestButton-1'>
+                            <Button onClick={deleteQuest}> Delete </Button>
+                        </div>
                     </DialogActions>
                 </Dialog>
             </div>
