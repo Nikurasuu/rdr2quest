@@ -158,7 +158,3 @@ test("EditQuestDialog Save with correct data", () => {
     expect(quests[0].reward).toBe("testQuestReward-1");
     expect(openEditDialog).toBe(false);
 });
-
-test('that fails', () => {
-    expect(true).toBe(false);
-});
