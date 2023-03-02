@@ -63,62 +63,66 @@ function EditQuestDialog({  openEditDialog, setOpenEditDialog,
                 <div data-testid="editQuestDialog-1">
                     <DialogTitle>Edit Quest</DialogTitle>
                     <DialogContent>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="questName"
-                            label="Quest Name"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            defaultValue={activeQuest === null ? '' : activeQuest.name}
-                            onBlur={e => setName(e.target.value)}
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="questDescription"
-                            label="Quest Description"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            multiline
-                            defaultValue={activeQuest === null ? '' : activeQuest.description}
-                            onBlur={e => setDescription(e.target.value)}
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="questType"
-                            label="Quest Type"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            defaultValue={activeQuest === null ? '' : activeQuest.type}
-                            onBlur={e => setType(e.target.value)}
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="questLocation"
-                            label="Quest Location"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            defaultValue={activeQuest === null ? '' : activeQuest.location}
-                            onBlur={e => setLocation(e.target.value)}
-                        />
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="questReward"
-                            label="Quest Reward"
-                            type="text"
-                            fullWidth
-                            variant="standard"
-                            defaultValue={activeQuest === null ? '' : activeQuest.reward}
-                            onBlur={e => setReward(e.target.value)}
-                        />
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="questName"
+                                label="Quest Name"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                multiline
+                                defaultValue={activeQuest === null ? '' : activeQuest.name}
+                                onBlur={e => setName(e.target.value)}
+                            />
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="questDescription"
+                                label="Quest Description"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                multiline
+                                defaultValue={activeQuest === null ? '' : activeQuest.description}
+                                onBlur={e => setDescription(e.target.value)}
+                            />
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="questType"
+                                label="Quest Type"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                multiline
+                                defaultValue={activeQuest === null ? '' : activeQuest.type}
+                                onBlur={e => setType(e.target.value)}
+                            />
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="questLocation"
+                                label="Quest Location"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                multiline
+                                defaultValue={activeQuest === null ? '' : activeQuest.location}
+                                onBlur={e => setLocation(e.target.value)}
+                            />
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="questReward"
+                                label="Quest Reward"
+                                type="text"
+                                fullWidth
+                                variant="standard"
+                                multiline
+                                defaultValue={activeQuest === null ? '' : activeQuest.reward}
+                                onBlur={e => setReward(e.target.value)}
+                            />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Cancel</Button>

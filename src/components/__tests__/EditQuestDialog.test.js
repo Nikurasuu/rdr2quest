@@ -52,7 +52,7 @@ test("EditQuestDialog shows textfields", () => {
     expect(questReward).toBeInTheDocument();
 });
 
-test.skip("EditQuestDialog shows activeQuest", () => {
+test("EditQuestDialog shows activeQuest", () => {
     //GIVEN
     const activeQuest = {
         id: 1,
@@ -65,8 +65,9 @@ test.skip("EditQuestDialog shows activeQuest", () => {
 
     //WHEN
     render(<EditQuestDialog openEditDialog={true} activeQuest={activeQuest} />);
-
+    
     //THEN
+    //Alles andere ist kein textField!!
     const questName = screen.getByText("testQuestName-1");
     expect(questName).toBeInTheDocument();
     const questDescription = screen.getByText("testQuestDescription-1");
@@ -103,9 +104,12 @@ test("EditQuestDialog empty fields", () => {
     expect(emptyFieldsAlert).toBeInTheDocument();
 });
 
-test.skip("EditQuestDialog Save with correct data", () => {
+test("EditQuestDialog Save with correct data", () => {
     //GIVEN
-    const activeQuest = {
+    let quests = [];
+    const setQuests = (newQuests) => quests = newQuests;
+
+    let activeQuest = {
         id: 1,
         name: "testQuestName-1",
         description: "testQuestDescription-1",
@@ -113,9 +117,31 @@ test.skip("EditQuestDialog Save with correct data", () => {
         location: "testQuestLocation-1",
         reward: "testQuestReward-1",
     };
-    render(<EditQuestDialog openEditDialog={true} activeQuest={activeQuest} />);
+    const setActiveQuest = (quest) => activeQuest = quest;
+
+    const handleNewQuest = (newQuest) => {
+        let questExists = false;
+        let newQuests = quests.map((quest) => {
+            if (quest.id === newQuest.id) {
+                questExists = true;
+                return newQuest;
+            }
+            return quest;
+        });
+        if (questExists) {
+            setQuests(newQuests);
+            setActiveQuest(null);
+            return;
+        }
+        setQuests([...quests, newQuest]);
+        setActiveQuest(null);
+    };
+
+    let openEditDialog = true;
+    const setOpenEditDialog = (open) => openEditDialog = open;
 
     //WHEN
+    render(<EditQuestDialog openEditDialog={openEditDialog} setOpenEditDialog={setOpenEditDialog} activeQuest={activeQuest} handleNewQuest={handleNewQuest} setActiveQuest={setActiveQuest} />);
     const submitButton = screen.getByText("Save");
     expect(submitButton).toBeInTheDocument();
     act(() => {
@@ -123,6 +149,12 @@ test.skip("EditQuestDialog Save with correct data", () => {
     });
 
     //THEN
-    const editQuestDialog = screen.getByTestId("editQuestDialog-1");
-    expect(editQuestDialog).not.toBeInTheDocument();
+    expect(quests.length).toBe(1);
+    expect(quests[0].id).toBe(1);
+    expect(quests[0].name).toBe("testQuestName-1");
+    expect(quests[0].description).toBe("testQuestDescription-1");
+    expect(quests[0].type).toBe("testQuestType-1");
+    expect(quests[0].location).toBe("testQuestLocation-1");
+    expect(quests[0].reward).toBe("testQuestReward-1");
+    expect(openEditDialog).toBe(false);
 });

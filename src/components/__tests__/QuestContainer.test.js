@@ -69,3 +69,19 @@ test('Delete Quest Button Click without activeQuest set', () => {
     const noQuestSelected = screen.getByText('Please select a quest');
     expect(noQuestSelected).toBeInTheDocument();
 });
+
+test('Delete Quest Button Click with activeQuest set', () => {
+    render(<QuestContainer />);
+    const addButton = screen.getByText('Add Quest');
+    expect(addButton).toBeInTheDocument();
+    act(() => {
+        addButton.click();
+    });
+    const editQuestDialog = screen.getByTestId('editQuestDialog-1');
+    expect(editQuestDialog).toBeInTheDocument();
+    const deleteButton = screen.getByText('Delete Quest');
+    expect(deleteButton).toBeInTheDocument();
+    act(() => {
+        deleteButton.click();
+    });
+});
