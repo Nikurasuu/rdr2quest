@@ -98,25 +98,29 @@ function QuestContainer() {
     };
 
     return ( 
-        <>
+        <div data-testid='questContainer-1'>
             <Snackbar 
                 open={openNotSelectedAlert} 
                 autoHideDuration={6000} 
                 onClose={handleNotSelectedAlert}
                 message="Please select a quest"
             />
-            <Dialog open={openDeleteDialog} onClose={handleDeleteDialog}>
-                <DialogTitle> Delete Quest? </DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Are you sure you want to delete this quest?
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleDeleteDialog}> Cancel </Button>
-                    <Button onClick={deleteQuest}> Delete </Button>
-                </DialogActions>
-            </Dialog>
+            <div data-testid='deleteQuestDialog-1'>
+                <Dialog open={openDeleteDialog} onClose={handleDeleteDialog}>
+                    <DialogTitle> Delete Quest? </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Are you sure you want to delete this quest?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleDeleteDialog}> Cancel </Button>
+                        <div data-testid='deleteQuestButton-1'>
+                            <Button onClick={deleteQuest}> Delete </Button>
+                        </div>
+                    </DialogActions>
+                </Dialog>
+            </div>
             <EditQuestDialog openEditDialog={openEditDialog} setOpenEditDialog={setOpenEditDialog} activeQuest={activeQuest} setActiveQuest={setActiveQuest} handleNewQuest={handleNewQuest}/>
             <Grid container spacing={2} style={{height: '100%'}}>
                 <Grid item xs={12} sm={4}>
@@ -137,7 +141,7 @@ function QuestContainer() {
                     </Card>
                 </Grid>
             </Grid>
-        </>
+        </div>
     );
 }
 

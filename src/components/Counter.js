@@ -10,11 +10,11 @@ function App() {
 function Counter() {
     const [count, setCount] = React.useState(0);
     return (
-        <>
-            <p>Count: {String(count)}</p>
+        <div data-testid='counter'>
+            <p data-testid='counterText'>Count: {String(count)}</p>
             <Button onClick={() => setCount(count + 1)}>Increment</Button>
             <Button onClick={() => setCount(count - 1)}>Decrement</Button>
-        </>
+        </div>
     );
 }
 

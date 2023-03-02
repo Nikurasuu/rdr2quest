@@ -15,13 +15,13 @@ export function QuestDetails({ quest }) {
     }
     catch(error) {
         return (
-            <div className = "QuestDetails" style={{ height: '100%', width: '100%' }}>
+            <div className = "QuestDetails" style={{ height: '100%', width: '100%' }} data-testid="questDetails-1">
                 <p>Keine Quest ausgewählt.</p>
             </div>
             );
     }
     return (
-        <div className = "QuestDetails" style={{ height: '100%', width: '100%' }}>
+        <div className = "QuestDetails" style={{ height: '100%', width: '100%' }} data-testid="questDetails-2">
             <h2>{quest.name}</h2>
             <h4>Quest Type</h4>
             <p>{quest.type}</p>
